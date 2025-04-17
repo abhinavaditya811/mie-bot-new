@@ -24,7 +24,7 @@ import time
 # Page Setup
 # -------------------------------
 st.set_page_config(page_title="MIE Chatbot — Northeastern University", layout="wide")
-st.title("🤖 MIE Chatbot — Northeastern University")
+st.title("MIE Chatbot — Northeastern University")
 
 # -------------------------------
 # Initialize SQLite DB
@@ -45,22 +45,22 @@ if "session_id" not in st.session_state:
 # SIDEBAR
 # -------------------------------
 with st.sidebar:
-    st.header("📅 Chat Sessions")
+    st.header("Chat Sessions")
 
-    # ➕ New Chat Button
-    if st.button("➕ New Chat"):
+    # New Chat Button
+    if st.button("+ New Chat"):
         st.session_state.session_id = str(uuid.uuid4())
         st.session_state.messages = []
         st.session_state.chat_history = []
         st.rerun()
 
-    # 🌐 Past Sessions with Clickable Preview
-    st.subheader("📚 Past Chats")
+    # Past Sessions with Clickable Preview
+    st.subheader("Past Chats")
     all_sessions = get_all_sessions()
     for sid in all_sessions:
         preview = get_session_preview(sid)
         label = preview if len(preview) < 50 else preview[:47] + "..."
-        button_label = f"🗂 {sid[:8]}... — {label}"
+        button_label = f"{sid[:8]}... — {label}"
         if st.button(button_label, key=sid):
             st.session_state.session_id = sid
             st.session_state.messages = load_chat(sid)
@@ -69,16 +69,16 @@ with st.sidebar:
             ]
             st.rerun()
 
-    # 🧠 Current Session History
-    st.subheader("🧠 This Session")
+    # Current Session History
+    st.subheader("This Session")
     if st.session_state.chat_history:
         for i, msg in enumerate(st.session_state.chat_history, 1):
             st.markdown(f"**{i}.** {msg}")
     else:
         st.info("Start a conversation above.")
 
-    # 🗑️ Clear current session
-    if st.button("🗑️ Clear this session"):
+    # Clear current session
+    if st.button("Clear this session"):
         st.session_state.messages = []
         st.session_state.chat_history = []
         st.rerun()
