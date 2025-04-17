@@ -10,14 +10,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Load API Keys from .env or environment
-# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-# PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
-# INDEX_NAME = os.getenv("INDEX_NAME")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+INDEX_NAME = os.getenv("INDEX_NAME")
 
 import streamlit as st
 
-OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
-PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
+# OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+# PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
 INDEX_NAME = "chatbot-memory"
 
 # Set OpenAI key
