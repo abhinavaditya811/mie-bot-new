@@ -4,3 +4,4 @@ pinecone
 sentence-transformers
 langchain
 python-dotenv
+beautifulsoup4==4.10.0
