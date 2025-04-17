@@ -50,3 +50,16 @@ def get_session_preview(session_id: str, limit=1) -> str:
     row = c.fetchone()
     conn.close()
     return row[0] if row else "(no message)"
+
+def delete_chat(session_id: str) -> bool:
+    """Delete all messages for a specific chat session"""
+    try:
+        conn = sqlite3.connect(DB_FILE)
+        c = conn.cursor()
+        c.execute("DELETE FROM chats WHERE session_id = ?", (session_id,))
+        conn.commit()
+        conn.close()
+        return True
+    except Exception as e:
+        print(f"Error deleting chat: {e}")
+        return False
